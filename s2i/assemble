@@ -2,10 +2,14 @@
 
 set -e
 
-echo "---> Installing application source"
-cp -Rf /tmp/sti/src $HOME/src
+APP_TARGET=${APP_TARGET:-/app}
 
-cd ${HOME}/src
+mkdir -p ${APP_TARGET}/src
+
+echo "---> Installing application source"
+cp -Rf /tmp/sti/src ${APP_TARGET}/src
+
+cd ${APP_TARGET}/src
 echo "---> Building Spring Boot application from source"
 echo "--> # MVN_ARGS = $MVN_ARGS"
 if [ -f "mvnw" ]; then
